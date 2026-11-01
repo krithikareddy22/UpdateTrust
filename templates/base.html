@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title or "UpdateTrust" }}</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><div class="shell"><aside class="sidebar"><div class="brand"><span class="brand-icon">UT</span><div><b>UpdateTrust</b><small>Secure update console</small></div></div>
+<nav><a class="{{ 'active' if page=='dashboard' else '' }}" href="{{ url_for('index') }}">◫ Dashboard</a>
+<a class="{{ 'active' if page=='releases' else '' }}" href="{{ url_for('releases') }}">⇧ Releases</a>
+<a class="{{ 'active' if page=='publishers' else '' }}" href="{{ url_for('publishers') }}">♙ Publishers</a>
+<a class="{{ 'active' if page=='attack' else '' }}" href="{{ url_for('attack_lab') }}">⚠ Attack Lab</a>
+<a class="{{ 'active' if page=='events' else '' }}" href="{{ url_for('events') }}">☷ Event Log</a>
+<a class="{{ 'active' if page=='benchmarks' else '' }}" href="{{ url_for('benchmarks') }}">◴ Benchmarks</a>
+<a class="{{ 'active' if page=='docs' else '' }}" href="{{ url_for('docs') }}">ⓘ Project Guide</a></nav>
+<div class="side-note"><span class="dot"></span> Local demo mode<small>Packages are never executed.</small></div></aside>
+<main class="main"><header class="topbar"><div><span class="eyebrow">SOFTWARE SUPPLY-CHAIN SECURITY</span><h1>{% block heading %}Dashboard{% endblock %}</h1></div><div class="top-pill"><span class="dot"></span> Ed25519 enabled</div></header>
+{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flash-list">{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}
+{% block content %}{% endblock %}<footer>UpdateTrust · Educational prototype · Do not expose to the public internet</footer></main></div></body></html>
